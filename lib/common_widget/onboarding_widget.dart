@@ -3,7 +3,10 @@ import 'package:liftlog/common/color_extension.dart';
 
 class OnboardingWidget extends StatelessWidget {
   final Map metadata;
-  const OnboardingWidget({super.key, required this.metadata});
+  const OnboardingWidget({
+    super.key,
+    required this.metadata,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -16,6 +19,7 @@ class OnboardingWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Image.asset(
+            gaplessPlayback: true,
             metadata["image"].toString(),
             width: media.width,
             fit: BoxFit.fitWidth,

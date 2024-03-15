@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:liftlog/common/color_extension.dart';
+import 'package:liftlog/common/onboarding_example.dart';
 import 'package:liftlog/common_widget/round_button.dart';
 import 'package:liftlog/screen/onboarding/onboarding_screen.dart';
 
@@ -73,7 +74,7 @@ class _GetStartedPageState extends State<GetStartedPage> {
 Route _createRoute() {
   return PageRouteBuilder(
     pageBuilder: (context, animation, secondaryAnimation) =>
-        const OnboardingScreen(),
+        const OnboardingExample(),
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
       const begin = Offset(1.0, 0.0);
       const end = Offset.zero;
