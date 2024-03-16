@@ -47,6 +47,39 @@
 //     return Scaffold(
 //       backgroundColor: Colors.deepPurpleAccent,
 // //      appBar: AppBar(title: Text("Page 2")),
+//       body: Column(
+//         mainAxisAlignment: MainAxisAlignment.center,
+//         children: [
+//           Center(
+//             child: MaterialButton(
+//               child: const Text("Back"),
+//               onPressed: () => Navigator.pop(context),
+//             ),
+//           ),
+//           Center(
+//             child: MaterialButton(
+//               child: const Text("Next"),
+//               onPressed: () {
+//                 Navigator.push(context, ConcentricPageRoute(builder: (ctx) {
+//                   return const Page3();
+//                 }));
+//               },
+//             ),
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+// }
+
+// class Page3 extends StatelessWidget {
+//   const Page3({Key? key}) : super(key: key);
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       backgroundColor: const Color.fromARGB(255, 0, 0, 0),
+// //      appBar: AppBar(title: Text("Page 2")),
 //       body: Center(
 //         child: MaterialButton(
 //           child: const Text("Back"),

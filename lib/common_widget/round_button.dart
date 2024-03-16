@@ -1,37 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:liftlog/common/color_extension.dart';
 
+enum RoundButtonType { bgGradient, bgSGradient, textGradient }
+
 class RoundButtonWidget extends StatelessWidget {
   final String title;
+  final RoundButtonType type;
   final VoidCallback onPressed;
-  const RoundButtonWidget(
-      {super.key, required this.title, required this.onPressed});
+  const RoundButtonWidget({
+    super.key,
+    required this.title,
+    required this.onPressed,
+    this.type = RoundButtonType.bgGradient,
+  });
 
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
-      color: myThemecolor.white,
+      color: myThemecolor.grey,
       onPressed: onPressed,
       height: 50,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
-      textColor: myThemecolor.primaryColor1,
+      textColor: myThemecolor.white,
       minWidth: double.maxFinite,
-      child: ShaderMask(
-        blendMode: BlendMode.srcIn,
-        shaderCallback: (bounds) {
-          return LinearGradient(
-                  colors: myThemecolor.primaryG,
-                  begin: Alignment.centerRight,
-                  end: Alignment.centerLeft)
-              .createShader(Rect.fromLTRB(0, 0, bounds.width, bounds.height));
-        },
-        child: Text(
-          title,
-          style: TextStyle(
-              color: myThemecolor.primaryColor1,
-              fontSize: 16,
-              fontWeight: FontWeight.w700),
-        ),
+      child: Text(
+        title,
+        style: TextStyle(
+            color: myThemecolor.white,
+            fontSize: 16,
+            fontWeight: FontWeight.w700),
       ),
     );
   }

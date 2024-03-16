@@ -1,5 +1,6 @@
 import 'package:concentric_transition/concentric_transition.dart';
 import 'package:flutter/material.dart';
+import 'package:liftlog/screen/signup/signup_view.dart';
 
 final pages = [
   const PageData(
@@ -25,10 +26,29 @@ final pages = [
     image: AssetImage("assets/images/calories.png"),
     title: "Burn Calories",
     subtitle:
-        "Let’s keep burning, to achive yours goals, it hurts only temporarily, if you give up now you will be in pain forever",
+        "Let's keep burning, to achive yours goals, it hurts only temporarily, if you give up now you will be in pain forever",
     tsize: 45,
     subsize: 20,
     bgColor: Color.fromARGB(255, 124, 122, 124),
+  ),
+  const PageData(
+    image: AssetImage("assets/images/vegetables.png"),
+    title: "Eat Healthy",
+    subtitle:
+        "Let's start a healthy lifestyle with us, we will help you determine your diet. Don't forget healthy eating healthy life",
+    tsize: 45,
+    subsize: 20,
+    bgColor: Color.fromARGB(255, 16, 185, 174),
+  ),
+  const PageData(
+    image: AssetImage("assets/images/sleep.png"),
+    title: "Sleep Quality",
+    textColor: Colors.white,
+    subtitle:
+        "Improve the quality of your sleep with us, good quality sleep can bring a good mood in the morning",
+    tsize: 45,
+    subsize: 20,
+    bgColor: Color.fromARGB(255, 43, 37, 32),
   ),
 ];
 
@@ -53,10 +73,16 @@ class OnboardingExample extends StatelessWidget {
         // itemCount: pages.length,
         duration: const Duration(milliseconds: 1500),
         // opacityFactor: 2.0,
+
+        onFinish: () {
+          Navigator.of(context).push(_createRoute());
+        },
         // scaleFactor: 0.2,
         // verticalPosition: 0.7,
+
         // direction: Axis.vertical,
-        // itemCount: pages.length,
+        itemCount: pages.length,
+        // onFinish: ,
         // physics: NeverScrollableScrollPhysics(),
         itemBuilder: (index) {
           final page = pages[index % pages.length];
@@ -99,8 +125,8 @@ class _Page extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
-    final screenWidth = MediaQuery.of(context).size.width;
-    var media = MediaQuery.of(context).size;
+    //final screenWidth = MediaQuery.of(context).size.width;
+    //var media = MediaQuery.of(context).size;
     space(double p) => SizedBox(height: screenHeight * p / 100);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -195,7 +221,7 @@ class _Image extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var media = MediaQuery.of(context).size;
+    // var media = MediaQuery.of(context).size;
     return Container(
       width: size,
       height: size,
@@ -206,4 +232,22 @@ class _Image extends StatelessWidget {
       ),
     );
   }
+}
+
+Route _createRoute() {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) => const SignupPage(),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      const begin = Offset(1.0, 0.0);
+      const end = Offset.zero;
+      const curve = Curves.easeIn;
+
+      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+      return SlideTransition(
+        position: animation.drive(tween),
+        child: child,
+      );
+    },
+  );
 }

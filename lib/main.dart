@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:liftlog/common/color_extension.dart';
-import 'package:liftlog/common/onboarding_example.dart';
-import 'package:liftlog/screen/getstarted/getstarted.dart';
-import 'package:liftlog/screen/onboarding/onboarding_screen.dart';
+import 'package:liftlog/screen/onboarding/onboarding_example.dart';
 
 void main() {
   runApp(const MyApp());
