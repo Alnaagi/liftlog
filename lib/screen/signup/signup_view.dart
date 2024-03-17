@@ -3,6 +3,7 @@ import 'package:liftlog/common/color_extension.dart';
 import 'package:liftlog/common_widget/round_button.dart';
 import 'package:liftlog/common_widget/round_textfield.dart';
 import 'package:liftlog/screen/login/login.dart';
+import 'package:liftlog/screen/profile/complete_profile_view.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
@@ -118,7 +119,15 @@ class _SignupPageState extends State<SignupPage> {
               SizedBox(
                 height: media.width * 0.25,
               ),
-              RoundButtonWidget(title: "Sign Up", onPressed: () {}),
+              RoundButtonWidget(
+                  title: "Sign Up",
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => CompleteProfilePage(),
+                        ));
+                  }),
               // SizedBox(
               //   height: media.width * 0.04,
               // ),

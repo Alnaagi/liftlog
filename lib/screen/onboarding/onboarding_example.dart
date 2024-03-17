@@ -5,9 +5,9 @@ import 'package:liftlog/screen/signup/signup_view.dart';
 final pages = [
   const PageData(
     image: AssetImage("assets/images/logo.png"),
-    title: "LiftLog",
+    Mtitle: "LiftLog",
     tsize: 80,
-    subtitle: "Commit to be fit",
+    Msubtitle: "Commit to be fit",
     subsize: 28,
     bgColor: Colors.blue,
     textColor: Colors.white,
@@ -18,7 +18,7 @@ final pages = [
     subtitle:
         "Don't worry if you have trouble determining your goals, We can help you determine your goals and track your goals",
     textColor: Colors.black,
-    tsize: 50,
+    tsize: 36,
     subsize: 20,
     bgColor: Colors.white,
   ),
@@ -27,18 +27,18 @@ final pages = [
     title: "Burn Calories",
     subtitle:
         "Let's keep burning, to achive yours goals, it hurts only temporarily, if you give up now you will be in pain forever",
-    tsize: 45,
+    tsize: 36,
     subsize: 20,
-    bgColor: Color.fromARGB(255, 124, 122, 124),
+    bgColor: Colors.orange,
   ),
   const PageData(
     image: AssetImage("assets/images/vegetables.png"),
     title: "Eat Healthy",
     subtitle:
         "Let's start a healthy lifestyle with us, we will help you determine your diet. Don't forget healthy eating healthy life",
-    tsize: 45,
+    tsize: 36,
     subsize: 20,
-    bgColor: Color.fromARGB(255, 16, 185, 174),
+    bgColor: Colors.teal,
   ),
   const PageData(
     image: AssetImage("assets/images/sleep.png"),
@@ -46,7 +46,7 @@ final pages = [
     textColor: Colors.white,
     subtitle:
         "Improve the quality of your sleep with us, good quality sleep can bring a good mood in the morning",
-    tsize: 45,
+    tsize: 36,
     subsize: 20,
     bgColor: Color.fromARGB(255, 43, 37, 32),
   ),
@@ -97,6 +97,8 @@ class OnboardingExample extends StatelessWidget {
 
 class PageData {
   final String? title;
+  final String? Mtitle;
+  final String? Msubtitle;
   final String? subtitle;
   final IconData? icon;
   final Color bgColor;
@@ -108,6 +110,8 @@ class PageData {
   const PageData({
     this.title,
     this.icon,
+    this.Mtitle,
+    this.Msubtitle,
     required this.tsize,
     required this.subsize,
     required this.image,
@@ -130,24 +134,54 @@ class _Page extends StatelessWidget {
     space(double p) => SizedBox(height: screenHeight * p / 100);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: Column(
+      child: Stack(
         children: [
-          space(10),
-          _Image(
-            page: page,
-            size: 300,
+          Column(
+            children: [
+              space(10),
+              _Image(
+                page: page,
+                size: 250,
+              ),
+              space(4),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: _Text(
+                  page: page,
+                  style: TextStyle(
+                    fontSize: page.tsize,
+                  ),
+                ),
+              ),
+              space(1),
+              _subText(
+                page: page,
+                style: TextStyle(
+                  fontSize: page.subsize,
+                ),
+              ),
+            ],
           ),
-          space(2),
-          _Text(
-            page: page,
-            style: TextStyle(
-              fontSize: page.tsize,
-            ),
-          ),
-          _subText(
-            page: page,
-            style: TextStyle(
-              fontSize: page.subsize,
+          Align(
+            alignment: Alignment.center,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                space(5),
+                _MText(
+                  page: page,
+                  style: TextStyle(
+                    fontSize: page.tsize,
+                  ),
+                ),
+                _MsubText(
+                  page: page,
+                  style: TextStyle(
+                    fontSize: page.subsize,
+                  ),
+                ),
+              ],
             ),
           ),
         ],
@@ -178,7 +212,7 @@ class _Text extends StatelessWidget {
         // fontSize: 18,
         height: 1.2,
       ).merge(style),
-      textAlign: TextAlign.center,
+      textAlign: TextAlign.left,
     );
   }
 }
@@ -200,9 +234,9 @@ class _subText extends StatelessWidget {
       style: TextStyle(
         color: page.textColor,
         fontFamily: 'Poppins',
-        letterSpacing: 2.0,
+        letterSpacing: 1.0,
         // fontSize: 18,
-        height: 1.5,
+        height: 1.2,
       ).merge(style),
       textAlign: TextAlign.left,
     );
@@ -250,4 +284,57 @@ Route _createRoute() {
       );
     },
   );
+}
+
+class _MText extends StatelessWidget {
+  const _MText({
+    Key? key,
+    required this.page,
+    this.style,
+  }) : super(key: key);
+
+  final PageData page;
+  final TextStyle? style;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      page.Mtitle ?? '',
+      style: TextStyle(
+        color: page.textColor,
+        fontWeight: FontWeight.w700,
+        fontFamily: 'Poppins',
+        letterSpacing: 0.0,
+        // fontSize: 18,
+        height: 1.2,
+      ).merge(style),
+      textAlign: TextAlign.left,
+    );
+  }
+}
+
+class _MsubText extends StatelessWidget {
+  const _MsubText({
+    Key? key,
+    required this.page,
+    this.style,
+  }) : super(key: key);
+
+  final PageData page;
+  final TextStyle? style;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      page.Msubtitle ?? '',
+      style: TextStyle(
+        color: page.textColor,
+        fontFamily: 'Poppins',
+        letterSpacing: 2.2,
+        // fontSize: 18,
+        height: 1.5,
+      ).merge(style),
+      textAlign: TextAlign.left,
+    );
+  }
 }
