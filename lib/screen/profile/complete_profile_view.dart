@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_linear_datepicker/flutter_datepicker.dart';
+import 'package:intl/intl.dart';
 import 'package:liftlog/common/color_extension.dart';
 import 'package:liftlog/common_widget/round_button.dart';
 import 'package:liftlog/common_widget/round_textfield.dart';
+import 'package:liftlog/screen/profile/your_goal.dart';
 
 class CompleteProfilePage extends StatefulWidget {
   const CompleteProfilePage({
@@ -24,6 +26,8 @@ class _CompleteProfilePageState extends State<CompleteProfilePage> {
   String? newValue;
   var Datepick;
   var Datepicked = 'Date of Birth';
+  // var InitDate = DateTime.now;
+  String formattedDate = DateFormat('yyyy/MM/dd').format(DateTime.now());
   @override
   Widget build(BuildContext context) {
     var media = MediaQuery.of(context).size;
@@ -90,6 +94,8 @@ class _CompleteProfilePageState extends State<CompleteProfilePage> {
                             dropdownColor: myThemecolor.lightGray,
                             hint: Text(
                               'Choose your Gender',
+                              style: TextStyle(
+                                  fontSize: 15, color: myThemecolor.grey),
                             ),
                             onChanged: (String? changedValue) {
                               setState(() {
@@ -125,107 +131,97 @@ class _CompleteProfilePageState extends State<CompleteProfilePage> {
                       context: context,
                       builder: (BuildContext) {
                         return AlertDialog(
+                            backgroundColor: myThemecolor.white,
                             actions: <Widget>[
-                              TextButton(
-                                child: const Text('Cancel'),
-                                onPressed: () {
-                                  Navigator.of(context).pop();
-                                },
+                              Container(
+                                decoration: BoxDecoration(
+                                    color: myThemecolor.grey,
+                                    borderRadius: BorderRadius.circular(15)),
+                                height: 50,
+                                width: media.width * 0.3,
+                                child: TextButton(
+                                  child: const Text(
+                                    'Cancel',
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                ),
                               ),
-                              TextButton(
-                                child: const Text('Confirm'),
-                                onPressed: () {
-                                  setState(() {
-                                    Datepicked = Datepick;
-                                  });
-                                  print(Datepicked);
-                                  Navigator.of(context).pop();
-                                },
+                              Container(
+                                decoration: BoxDecoration(
+                                    color: myThemecolor.grey,
+                                    borderRadius: BorderRadius.circular(15)),
+                                height: 50,
+                                width: media.width * 0.3,
+                                child: TextButton(
+                                  child: Text(
+                                    'Confirm',
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                  onPressed: () {
+                                    setState(() {
+                                      Datepicked = Datepick;
+                                      formattedDate = Datepicked;
+                                    });
+                                    print(Datepicked);
+                                    Navigator.of(context).pop();
+                                  },
+                                ),
                               ),
                             ],
-                            title: Text("hello"),
-                            content: LinearDatePicker(
-                              selectedRowStyle: TextStyle(color: Colors.black),
-                              unselectedRowStyle:
-                                  TextStyle(color: myThemecolor.grey),
-                              yearText: "Year",
-                              monthText: "Month",
-                              dayText: "Day",
-                              labelStyle: TextStyle(fontFamily: "Poppins"),
-                              dateChangeListener: (String date) {
-                                setState(() {
-                                  Datepick = date;
-                                });
-                              },
+                            // title: Text("Date of Birth"),
+                            content: Container(
+                              height: media.height * 0.22,
+                              // width: 100,
+                              child: LinearDatePicker(
+                                initialDate: formattedDate,
+                                selectedRowStyle: TextStyle(
+                                  color: Colors.black,
+                                ),
+                                unselectedRowStyle: TextStyle(
+                                  color: myThemecolor.grey,
+                                ),
+                                yearText: "Year",
+                                monthText: "Month",
+                                dayText: "Day",
+                                labelStyle: TextStyle(
+                                    fontFamily: "Poppins", fontSize: 16),
+                                dateChangeListener: (String date) {
+                                  setState(() {
+                                    Datepick = date;
+                                  });
+                                },
+                              ),
                             ));
                       },
                     );
                   },
                   child: Container(
                     height: 50,
-                    width: 50,
+                    width: media.width,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15),
                         color: myThemecolor.lightGray),
-                    child: Text(Datepicked),
-                    //  CalendarDatePicker2WithActionButtons(
-                    //   config: CalendarDatePicker2WithActionButtonsConfig(),
-                    //   value: [],
-                    // )
-                    //DatePickerDialog(
-                    //  firstDate: DateTime(1930), lastDate: DateTime.now()),
-                    // child: DropdownButtonHideUnderline(
-                    //     child: Row(
-                    //   children: [
-                    //     SizedBox(
-                    //       width: media.width * 0.03,
-                    //     ),
-                    //     Icon(
-                    //       Icons.people_alt,
-                    //       color: myThemecolor.grey,
-                    //     ),
-                    //     SizedBox(
-                    //       width: media.width * 0.025,
-                    //     ),
-                    //     Expanded(
-                    //       child: CalendarDatePicker2(
-                    //         config: CalendarDatePicker2Config(),
-                    //         value: [],
-                    //       ),
-                    //     ),
-                    //     // Expanded(
-                    //     //   child: DropdownButton(
-                    //     //       borderRadius: BorderRadius.circular(15),
-                    //     //       dropdownColor: myThemecolor.lightGray,
-                    //     //       hint: Text(
-                    //     //         'Date of Birth',
-                    //     //       ),
-                    //     //       onChanged: (String? changedValue) {
-                    //     //         setState(() {
-                    //     //           newValue = changedValue;
-                    //     //           print(newValue);
-                    //     //         });
-                    //     //       },
-                    //     //       value: newValue,
-                    //     //       items: <String>[
-                    //     //         'Male',
-                    //     //         'Female',
-                    //     //       ].map((String value) {
-                    //     //         return new DropdownMenuItem<String>(
-                    //     //           value: value,
-                    //     //           child: new Text(value),
-                    //     //         );
-                    //     //       }).toList()),
-                    //     // ),
-                    //   ],
-                    // )),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 11),
+                      child: Row(
+                        children: [
+                          Icon(Icons.calendar_month_outlined,
+                              color: myThemecolor.grey),
+                          SizedBox(
+                            width: media.width * 0.03,
+                          ),
+                          Text(Datepicked,
+                              style: TextStyle(
+                                  fontSize: 15, color: myThemecolor.grey)),
+                        ],
+                      ),
+                    ),
                   ),
                 ),
-                // RoundTextField(
-                //   hinttext: "Date of Birth",
-                //   icon: Icon(Icons.calendar_month_outlined,
-                //       color: myThemecolor.grey),
-                // ),
+
                 SizedBox(
                   height: media.width * 0.04,
                 ),
@@ -235,6 +231,7 @@ class _CompleteProfilePageState extends State<CompleteProfilePage> {
                     SizedBox(
                       width: media.width * 0.7,
                       child: RoundTextField(
+                        keyboardType: TextInputType.number,
                         hinttext: "Your Weight",
                         icon: Icon(Icons.monitor_weight_outlined,
                             color: myThemecolor.grey),
@@ -278,8 +275,9 @@ class _CompleteProfilePageState extends State<CompleteProfilePage> {
                     SizedBox(
                       width: media.width * 0.7,
                       child: RoundTextField(
+                        keyboardType: TextInputType.number,
                         hinttext: "Your Height",
-                        icon: Icon(Icons.monitor_weight_outlined,
+                        icon: Icon(Icons.height_outlined,
                             color: myThemecolor.grey),
                         // margin: EdgeInsets.all(10),
                       ),
@@ -315,7 +313,17 @@ class _CompleteProfilePageState extends State<CompleteProfilePage> {
                 SizedBox(
                   height: media.width * 0.08,
                 ),
-                RoundButtonWidget(title: "Login", onPressed: () {}),
+                RoundButtonWidget(
+                  title: "Next",
+                  icon: Icons.arrow_forward_ios_rounded,
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => WhatIsYourGoalPage(),
+                        ));
+                  },
+                ),
               ],
             ),
           ),

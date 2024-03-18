@@ -1,5 +1,6 @@
 import 'package:concentric_transition/concentric_transition.dart';
 import 'package:flutter/material.dart';
+import 'package:liftlog/screen/profile/complete_profile_view.dart';
 import 'package:liftlog/screen/signup/signup_view.dart';
 
 final pages = [
@@ -160,6 +161,13 @@ class _Page extends StatelessWidget {
                   fontSize: page.subsize,
                 ),
               ),
+              TextButton(
+                  onPressed: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => CompleteProfilePage(),
+                      )),
+                  child: Text("SKIP"))
             ],
           ),
           Align(
