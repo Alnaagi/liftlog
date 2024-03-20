@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:liftlog/common/color_extension.dart';
-import 'package:liftlog/common_widget/round_button.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({
@@ -16,6 +15,21 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     var media = MediaQuery.of(context).size;
     return Scaffold(
+      bottomNavigationBar: BottomAppBar(
+          child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          InkWell(
+            onTap: () {},
+            child: Column(children: [
+              Icon(
+                Icons.home,
+                size: media.width * 0.1,
+              )
+            ]),
+          )
+        ],
+      )),
       backgroundColor: myThemecolor.white,
       body: SingleChildScrollView(
         child: SafeArea(
@@ -55,17 +69,6 @@ class _HomePageState extends State<HomePage> {
                 SizedBox(
                   height: media.width * 0.08,
                 ),
-                // RoundButtonWidget(
-                //   title: "Go To HomePage",
-                //   icon: Icons.arrow_forward_ios_rounded,
-                //   onPressed: () {
-                //     Navigator.push(
-                //         context,
-                //         MaterialPageRoute(
-                //           builder: (context) => HomePage(),
-                //         ));
-                //   },
-                // ),
               ],
             ),
           ),
