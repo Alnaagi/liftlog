@@ -1,5 +1,12 @@
+import 'package:carousel_slider/carousel_controller.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:liftlog/common/color_extension.dart';
+import 'package:liftlog/common_widget/bottom_tab.dart';
+import 'package:liftlog/screen/exercises/exercises_tab_view.dart';
+import 'package:liftlog/screen/login/login.dart';
+import 'package:liftlog/screen/profile/complete_profile_view.dart';
+import 'package:liftlog/screen/signup/signup_view.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({
@@ -11,67 +18,124 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final CarouselController _controller = CarouselController();
+  int selectTab = 0;
+  int _selectedIndex = 0;
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index % listArr.length;
+    });
+  }
+
+  List<Widget> listArr = [
+    ExerciseTabView(),
+    SignupPage(),
+    LoginPage(),
+    CompleteProfilePage()
+  ];
   @override
+  void initState() {
+    super.initState();
+  }
+
   Widget build(BuildContext context) {
     var media = MediaQuery.of(context).size;
+
     return Scaffold(
-      bottomNavigationBar: BottomAppBar(
-          child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          InkWell(
-            onTap: () {},
-            child: Column(children: [
-              Icon(
-                Icons.home,
-                size: media.width * 0.1,
-              )
-            ]),
-          )
-        ],
-      )),
+      // floatingActionButton: SizedBox(
+      //     width: 70,
+      //     height: 70,
+      //     child: InkWell(
+      //       onTap: () {},
+      //       child: Container(),
+      //     )),
       backgroundColor: myThemecolor.white,
-      body: SingleChildScrollView(
-        child: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Column(
-              children: [
-                SizedBox(
-                  height: media.width * 0.08,
-                ),
-                Container(
-                  width: 300,
-                  height: 300,
-                  child: Stack(
-                    clipBehavior: Clip.none,
-                    fit: StackFit.expand,
-                    children: [
-                      Image.asset("assets/images/logo.png"),
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  height: media.width * 0.04,
-                ),
-                Text(
-                  "HomePage",
-                  style: TextStyle(
-                      color: myThemecolor.black,
-                      fontSize: 22,
-                      fontWeight: FontWeight.bold),
-                ),
-                Text(
-                  "HomePage",
-                  style: TextStyle(
-                      color: const Color.fromARGB(137, 0, 0, 0), fontSize: 14),
-                ),
-                SizedBox(
-                  height: media.width * 0.08,
-                ),
-              ],
-            ),
+      bottomNavigationBar: BottomAppBar(
+        padding: EdgeInsets.all(0),
+        child: Container(
+          decoration: const BoxDecoration(color: Colors.white, boxShadow: [
+            BoxShadow(
+                color: Colors.black26, blurRadius: 2, offset: Offset(0, -2))
+          ]),
+          height: kToolbarHeight,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              BottomTabWidget(
+                icon: "assets/images/home.png",
+                selectIcon: "assets/images/homebold.png",
+                isActive: selectTab == 0,
+                onTap: () {
+                  selectTab = 0;
+                  _selectedIndex = selectTab;
+                  if (mounted) {
+                    setState(() {});
+                  }
+                  _controller.animateToPage(_selectedIndex);
+                },
+              ),
+              BottomTabWidget(
+                icon: "assets/images/Activity.png",
+                selectIcon: "assets/images/ActivitySelected.png",
+                isActive: selectTab == 1,
+                onTap: () {
+                  selectTab = 1;
+                  _selectedIndex = selectTab;
+                  if (mounted) {
+                    setState(() {});
+                  }
+                  _controller.animateToPage(_selectedIndex);
+                },
+              ),
+              BottomTabWidget(
+                icon: "assets/images/Camera.png",
+                selectIcon: "assets/images/CameraSelected.png",
+                isActive: selectTab == 2,
+                onTap: () {
+                  selectTab = 2;
+                  _selectedIndex = selectTab;
+                  if (mounted) {
+                    setState(() {});
+                  }
+                  _controller.animateToPage(_selectedIndex);
+                },
+              ),
+              BottomTabWidget(
+                icon: "assets/images/Profile.png",
+                selectIcon: "assets/images/ProfileSelected.png",
+                isActive: selectTab == 3,
+                onTap: () {
+                  selectTab = 3;
+                  _selectedIndex = selectTab;
+                  if (mounted) {
+                    setState(() {});
+                  }
+                  _controller.animateToPage(_selectedIndex);
+                },
+              ),
+            ],
           ),
+        ),
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            CarouselSlider(
+              carouselController: _controller,
+              items: listArr,
+              options: CarouselOptions(
+                enableInfiniteScroll: false,
+                aspectRatio: 0.1,
+                viewportFraction: 1,
+                onScrolled: (value) {
+                  setState(() {});
+                },
+                onPageChanged: (index, reason) {
+                  setState(() {});
+                },
+              ),
+            ),
+          ],
         ),
       ),
     );
