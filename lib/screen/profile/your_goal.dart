@@ -17,6 +17,9 @@ class _WhatIsYourGoalPageState extends State<WhatIsYourGoalPage> {
   @override
   Widget build(BuildContext context) {
     var media = MediaQuery.of(context).size;
+    ImageProvider muscle = AssetImage('assets/images/muscle.png');
+    ImageProvider loose = AssetImage('assets/images/loose-weight.png');
+    ImageProvider gain = AssetImage('assets/images/gain-weight.png');
     return Scaffold(
       backgroundColor: myThemecolor.white,
       body: SingleChildScrollView(
@@ -44,18 +47,21 @@ class _WhatIsYourGoalPageState extends State<WhatIsYourGoalPage> {
                 height: media.height * 0.05,
               ),
               CarouselSlider(
-                items: [
-                  "assets/images/muscle.png",
-                  "assets/images/gain-weight.png",
-                  "assets/images/loose-weight.png"
-                ]
+                items: [muscle, loose, gain]
                     .map((gObj) => Container(
                           child: Column(children: [
-                            Image.asset(
-                              gObj,
-                              width: media.width * 0.6,
-                              alignment: Alignment.center,
-                              fit: BoxFit.fitWidth,
+                            Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 30),
+                              child: Container(
+                                height: media.height * 0.3,
+                                width: double.maxFinite,
+                                decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                        image: gObj, fit: BoxFit.fill),
+                                    borderRadius: BorderRadius.only(
+                                        bottomRight: Radius.circular(40),
+                                        bottomLeft: Radius.circular(40))),
+                              ),
                             ),
                             SizedBox(
                               height: media.width * 0.08,

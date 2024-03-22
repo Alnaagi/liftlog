@@ -12,12 +12,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    precacheImage(AssetImage("assets/images/loose-weight.png"), context);
+    precacheImage(AssetImage("assets/images/gain-weight.png"), context);
+    precacheImage(AssetImage("assets/images/muscle.png"), context);
     return MaterialApp(
       title: 'liftlog',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
           primaryColor: myThemecolor.primaryColor1, fontFamily: "Poppins"),
-      home: const HomePage(),
+      home: const OnboardingExample(),
     );
   }
 }
