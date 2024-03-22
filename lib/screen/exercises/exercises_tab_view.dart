@@ -54,24 +54,24 @@ class _ExerciseTabViewState extends State<ExerciseTabView> {
 
   @override
   Widget build(BuildContext context) {
+    var media = MediaQuery.of(context).size;
     return Scaffold(
-      body: SafeArea(
-        child: GridView.builder(
-          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              childAspectRatio: 1,
-              crossAxisSpacing: 20,
-              mainAxisSpacing: 20),
-          itemBuilder: (context, index) {
-            var obj = listArr[index] as Map? ?? {};
-            return ExercisesCell(
-              obj: obj,
-              onPressed: () {},
-            );
-          },
-          itemCount: listArr.length,
-        ),
+      body: GridView.builder(
+        // scrollDirection: Axis.vertical,
+        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            childAspectRatio: 1,
+            crossAxisSpacing: 20,
+            mainAxisSpacing: 20),
+        itemBuilder: (context, index) {
+          var obj = listArr[index] as Map? ?? {};
+          return ExercisesCell(
+            obj: obj,
+            onPressed: () {},
+          );
+        },
+        itemCount: listArr.length,
       ),
     );
   }

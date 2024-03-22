@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:liftlog/common/color_extension.dart';
+import 'package:liftlog/screen/home/homepage.dart';
 import 'package:liftlog/screen/onboarding/onboarding_example.dart';
 
 void main() {
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
           primaryColor: myThemecolor.primaryColor1, fontFamily: "Poppins"),
-      home: const OnboardingExample(),
+      home: const HomePage(),
     );
   }
 }

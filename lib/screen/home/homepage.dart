@@ -1,7 +1,11 @@
 import 'package:carousel_slider/carousel_controller.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:liftlog/common/before_after.dart';
 import 'package:liftlog/common/color_extension.dart';
+import 'package:liftlog/common/line_chart.dart';
+import 'package:liftlog/common/pie_chart.dart';
+import 'package:liftlog/common/radar_chart_sample1.dart';
 import 'package:liftlog/common_widget/bottom_tab.dart';
 import 'package:liftlog/screen/exercises/exercises_tab_view.dart';
 import 'package:liftlog/screen/login/login.dart';
@@ -29,9 +33,15 @@ class _HomePageState extends State<HomePage> {
 
   List<Widget> listArr = [
     ExerciseTabView(),
-    SignupPage(),
-    LoginPage(),
-    CompleteProfilePage()
+    SingleChildScrollView(
+      child: Column(children: [
+        LineChartSample2(),
+        PieChartSample2(),
+        RadarChartSample1()
+      ]),
+    ),
+    BeforeAfterPicPage(),
+    CompleteProfilePage(),
   ];
   @override
   void initState() {
@@ -42,13 +52,6 @@ class _HomePageState extends State<HomePage> {
     var media = MediaQuery.of(context).size;
 
     return Scaffold(
-      // floatingActionButton: SizedBox(
-      //     width: 70,
-      //     height: 70,
-      //     child: InkWell(
-      //       onTap: () {},
-      //       child: Container(),
-      //     )),
       backgroundColor: myThemecolor.white,
       bottomNavigationBar: BottomAppBar(
         padding: EdgeInsets.all(0),
@@ -117,22 +120,26 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ),
-      body: SingleChildScrollView(
-        child: Column(
+      body: SafeArea(
+        child: Row(
           children: [
-            CarouselSlider(
-              carouselController: _controller,
-              items: listArr,
-              options: CarouselOptions(
-                enableInfiniteScroll: false,
-                aspectRatio: 0.1,
-                viewportFraction: 1,
-                onScrolled: (value) {
-                  setState(() {});
-                },
-                onPageChanged: (index, reason) {
-                  setState(() {});
-                },
+            Expanded(
+              child: CarouselSlider(
+                carouselController: _controller,
+                items: listArr,
+                options: CarouselOptions(
+                  enableInfiniteScroll: false,
+                  aspectRatio: 0.1,
+                  viewportFraction: 1,
+                  onScrolled: (value) {
+                    setState(() {});
+                  },
+                  onPageChanged: (index, reason) {
+                    setState(() {
+                      selectTab = index;
+                    });
+                  },
+                ),
               ),
             ),
           ],
