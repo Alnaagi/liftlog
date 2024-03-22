@@ -8,9 +8,8 @@ import 'package:liftlog/common/pie_chart.dart';
 import 'package:liftlog/common/radar_chart_sample1.dart';
 import 'package:liftlog/common_widget/bottom_tab.dart';
 import 'package:liftlog/screen/exercises/exercises_tab_view.dart';
-import 'package:liftlog/screen/login/login.dart';
+
 import 'package:liftlog/screen/profile/complete_profile_view.dart';
-import 'package:liftlog/screen/signup/signup_view.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({
@@ -49,7 +48,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget build(BuildContext context) {
-    var media = MediaQuery.of(context).size;
+    // var media = MediaQuery.of(context).size;
 
     return Scaffold(
       backgroundColor: myThemecolor.white,

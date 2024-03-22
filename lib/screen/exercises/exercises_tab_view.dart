@@ -54,7 +54,7 @@ class _ExerciseTabViewState extends State<ExerciseTabView> {
 
   @override
   Widget build(BuildContext context) {
-    var media = MediaQuery.of(context).size;
+    // var media = MediaQuery.of(context).size;
     return Scaffold(
       body: GridView.builder(
         // scrollDirection: Axis.vertical,
