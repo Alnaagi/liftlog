@@ -131,70 +131,73 @@ class _CompleteProfilePageState extends State<CompleteProfilePage> {
                       context: context,
                       builder: (BuildContext) {
                         return AlertDialog(
-                            backgroundColor: myThemecolor.white,
-                            actions: <Widget>[
-                              Container(
-                                decoration: BoxDecoration(
-                                    color: myThemecolor.grey,
-                                    borderRadius: BorderRadius.circular(15)),
-                                height: 50,
-                                width: media.width * 0.3,
-                                child: TextButton(
-                                  child: const Text(
-                                    'Cancel',
-                                    style: TextStyle(color: Colors.white),
-                                  ),
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                  },
-                                ),
-                              ),
-                              Container(
-                                decoration: BoxDecoration(
-                                    color: myThemecolor.grey,
-                                    borderRadius: BorderRadius.circular(15)),
-                                height: 50,
-                                width: media.width * 0.3,
-                                child: TextButton(
-                                  child: Text(
-                                    'Confirm',
-                                    style: TextStyle(color: Colors.white),
-                                  ),
-                                  onPressed: () {
-                                    setState(() {
-                                      Datepicked = Datepick;
-                                      formattedDate = Datepicked;
-                                    });
-                                    print(Datepicked);
-                                    Navigator.of(context).pop();
-                                  },
-                                ),
-                              ),
-                            ],
-                            // title: Text("Date of Birth"),
-                            content: Container(
-                              height: media.height * 0.22,
-                              // width: 100,
-                              child: LinearDatePicker(
-                                initialDate: formattedDate,
-                                selectedRowStyle: TextStyle(
-                                  color: Colors.black,
-                                ),
-                                unselectedRowStyle: TextStyle(
+                          backgroundColor: myThemecolor.white,
+                          actions: <Widget>[
+                            Container(
+                              decoration: BoxDecoration(
                                   color: myThemecolor.grey,
+                                  borderRadius: BorderRadius.circular(15)),
+                              height: 50,
+                              width: media.width * 0.3,
+                              child: TextButton(
+                                child: const Text(
+                                  'Cancel',
+                                  style: TextStyle(color: Colors.white),
                                 ),
-                                yearText: "Year",
-                                monthText: "Month",
-                                dayText: "Day",
-                                labelStyle: TextStyle(
-                                    fontFamily: "Poppins", fontSize: 16),
-                                dateChangeListener: (String date) {
-                                  setState(() {
-                                    Datepick = date;
-                                  });
+                                onPressed: () {
+                                  Navigator.of(context).pop();
                                 },
                               ),
-                            ));
+                            ),
+                            Container(
+                              decoration: BoxDecoration(
+                                  color: myThemecolor.grey,
+                                  borderRadius: BorderRadius.circular(15)),
+                              height: 50,
+                              width: media.width * 0.3,
+                              child: TextButton(
+                                child: Text(
+                                  'Confirm',
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                                onPressed: () {
+                                  setState(() {
+                                    Datepicked = Datepick;
+                                    formattedDate = Datepicked;
+                                  });
+                                  print(Datepicked);
+                                  Navigator.of(context).pop();
+                                },
+                              ),
+                            ),
+                          ],
+                          // title: Text("Date of Birth"),
+                          content: Container(
+                            height: media.height * 0.22,
+                            // width: 100,
+                            child: LinearDatePicker(
+                              initialDate: formattedDate,
+                              selectedRowStyle: TextStyle(
+                                color: Colors.black,
+                              ),
+                              unselectedRowStyle: TextStyle(
+                                color: myThemecolor.grey,
+                              ),
+                              yearText: "Year",
+                              monthText: "Month",
+                              dayText: "Day",
+                              labelStyle: TextStyle(
+                                  fontFamily: "Poppins", fontSize: 16),
+                              dateChangeListener: (String date) {
+                                setState(
+                                  () {
+                                    Datepick = date;
+                                  },
+                                );
+                              },
+                            ),
+                          ),
+                        );
                       },
                     );
                   },

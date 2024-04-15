@@ -56,6 +56,7 @@ class _ExerciseTabViewState extends State<ExerciseTabView> {
   Widget build(BuildContext context) {
     // var media = MediaQuery.of(context).size;
     return Scaffold(
+      backgroundColor: Colors.transparent,
       body: GridView.builder(
         // scrollDirection: Axis.vertical,
         padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),

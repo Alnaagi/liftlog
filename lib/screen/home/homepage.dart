@@ -135,7 +135,7 @@ class _HomePageState extends State<HomePage> {
                   },
                   onPageChanged: (index, reason) {
                     setState(() {
-                      selectTab = index;
+                      selectTab == index;
                     });
                   },
                 ),
