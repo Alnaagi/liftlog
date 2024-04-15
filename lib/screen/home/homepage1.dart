@@ -1,13 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:liftlog/common/line_chart.dart';
+import 'package:simple_circular_progress_bar/simple_circular_progress_bar.dart';
 
 class HomeMain extends StatefulWidget {
   const HomeMain({super.key});
 
-  @override
   State<HomeMain> createState() => _HomeMainState();
 }
 
 class _HomeMainState extends State<HomeMain> {
+  late ValueNotifier<double> valueNotifier;
+
+  @override
+  void initState() {
+    super.initState();
+    valueNotifier = ValueNotifier(50.0);
+  }
+
   @override
   Widget build(BuildContext context) {
     var media = MediaQuery.of(context).size;
@@ -53,8 +62,8 @@ class _HomeMainState extends State<HomeMain> {
                 SizedBox(
                   height: media.height * 0.01,
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 20),
                   child: Align(
                       alignment: Alignment.centerLeft,
                       child:
@@ -69,7 +78,7 @@ class _HomeMainState extends State<HomeMain> {
                           //         ),
                           //       )
                           //     :
-                          const Text(
+                          Text(
                         'Welcome Back!',
                         style: TextStyle(
                           color: Colors.black,
@@ -154,9 +163,11 @@ class _HomeMainState extends State<HomeMain> {
                         ),
                       ),
                     ),
+
+                    /// See all Button ///
                     InkWell(
                       onTap: () {},
-                      child: Padding(
+                      child: const Padding(
                         padding: EdgeInsets.symmetric(horizontal: 20),
                         child: Text(
                           "See all",
@@ -174,238 +185,43 @@ class _HomeMainState extends State<HomeMain> {
                 SizedBox(
                   height: media.height * 0.005,
                 ),
-                GestureDetector(
-                  // onTap: () {
-                  //   setState(() {
-                  //     btnActive = !btnActive;
-                  //   });
 
-                  //   if (btn2Active = true) {
-                  //     btn2Active = false;
-                  //   }
-                  // },
+                //// Container Hypertrophy Plan ///
+                InkWell(
+                  onTap: () {},
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: Container(
-                      height: 105,
+                      height: 90,
                       width: double.maxFinite,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15),
                         color: const Color.fromARGB(255, 98, 149, 226),
                       ),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 10),
-                        child: Column(
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                // Padding(
-                                //   padding:
-                                //       const EdgeInsets.only(top: 5, right: 8),
-                                //   child: ClipRRect(
-                                //     borderRadius: BorderRadius.circular(8),
-                                //     child:
-
-                                //     Image.asset(
-                                //       "assets/images/samrat.png",
-                                //       // height: 40,
-                                //       width: 40,
-                                //       // fit: BoxFit.cover,
-                                //     ),
-                                //   ),
-                                // ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        const Text(
-                                          "Hypertrophy Plan",
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.bold,
-                                            fontFamily: "Poppins",
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          width: media.width * 0.06,
-                                        ),
-                                        // Text(
-                                        //   "(220)",
-                                        //   style: TextStyle(
-                                        //     color: Colors.white70,
-                                        //     fontSize: 12,
-                                        //     // letterSpacing: 0.8,
-                                        //     fontFamily: "Poppins",
-                                        //   ),
-                                        // ),
-                                        // const Padding(
-                                        //   padding: EdgeInsets.symmetric(
-                                        //       horizontal: 2),
-                                        //   child: Icon(
-                                        //     Icons.star,
-                                        //     color: Colors.amber,
-                                        //     size: 16,
-                                        //   ),
-                                        // ),
-                                        const Text(
-                                          "90%",
-                                          style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 16,
-                                              // letterSpacing: 0.8,
-                                              fontFamily: "Poppins",
-                                              fontWeight: FontWeight.bold),
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      ],
-                                    ),
-                                    // const Text(
-                                    //   "GI & Laparoscopic Surgeon",
-                                    //   style: TextStyle(
-                                    //       color: Colors.white70,
-                                    //       fontSize: 14,
-                                    //       // letterSpacing: 0.8,
-                                    //       fontFamily: "Poppins",
-                                    //       height: 0.8),
-                                    //   // textAlign: TextAlign.center,
-                                    // ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                            Padding(
-                              padding: EdgeInsets.symmetric(vertical: 8.5),
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                        left: media.width * 0.05),
-                                    child: Icon(
-                                      Icons.calendar_today_outlined,
-                                      color: Colors.white,
-                                      size: 17,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: media.width * 0.01,
-                                  ),
-                                  Text(
-                                    "4 Weeks",
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 16,
-                                      // letterSpacing: 0.8,
-                                      fontFamily: "Poppins",
-                                    ),
-                                    // textAlign: TextAlign.center,
-                                  ),
-                                  SizedBox(
-                                    width: media.width * 0.05,
-                                  ),
-                                  Icon(
-                                    Icons.access_time_rounded,
-                                    color: Colors.white,
-                                    size: 17,
-                                  ),
-                                  SizedBox(
-                                    width: media.width * 0.01,
-                                  ),
-                                  Text(
-                                    "5 day split",
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 16,
-                                      // letterSpacing: 0.8,
-                                      fontFamily: "Poppins",
-                                    ),
-                                    // textAlign: TextAlign.center,
-                                  ),
-                                  SizedBox(
-                                    width: media.width * 0.30,
-                                  ),
-                                ],
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: media.height * 0.008,
-                ),
-                GestureDetector(
-                  // onTap: () {
-                  //   setState(() {
-                  //     btnActive = !btnActive;
-                  //   });
-
-                  //   if (btn2Active = true) {
-                  //     btn2Active = false;
-                  //   }
-                  // },
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Container(
-                      height: 105,
-                      width: double.maxFinite,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        color: const Color.fromARGB(255, 255, 108, 82),
-                      ),
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Row(
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                        left: media.width * 0.04, top: 15),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        const Text(
-                                          "Blood test",
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.bold,
-                                            fontFamily: "Poppins",
-                                          ),
-                                        ),
-                                        const Text(
-                                          "your next checkup",
-                                          style: TextStyle(
-                                              color: Colors.white70,
-                                              fontSize: 14,
-                                              // letterSpacing: 0.8,
-                                              fontFamily: "Poppins",
-                                              height: 0.5),
-                                          // textAlign: TextAlign.center,
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
+                              const Text(
+                                "Hypertrophy Plan",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  fontFamily: "Poppins",
+                                ),
                               ),
+                              // Row ------
                               Padding(
-                                padding: EdgeInsets.symmetric(
-                                    vertical: 12, horizontal: 20),
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 4),
                                 child: Row(
                                   children: [
-                                    Icon(
+                                    const Icon(
                                       Icons.calendar_today_outlined,
                                       color: Colors.white,
                                       size: 17,
@@ -413,8 +229,29 @@ class _HomeMainState extends State<HomeMain> {
                                     SizedBox(
                                       width: media.width * 0.01,
                                     ),
-                                    Text(
-                                      "30 Mar",
+                                    const Text(
+                                      "4 Weeks",
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 16,
+                                        // letterSpacing: 0.8,
+                                        fontFamily: "Poppins",
+                                      ),
+                                      // textAlign: TextAlign.center,
+                                    ),
+                                    SizedBox(
+                                      width: media.width * 0.05,
+                                    ),
+                                    const Icon(
+                                      Icons.access_time_rounded,
+                                      color: Colors.white,
+                                      size: 17,
+                                    ),
+                                    SizedBox(
+                                      width: media.width * 0.01,
+                                    ),
+                                    const Text(
+                                      "5 day split",
                                       style: TextStyle(
                                         color: Colors.white,
                                         fontSize: 16,
@@ -425,31 +262,142 @@ class _HomeMainState extends State<HomeMain> {
                                     ),
                                   ],
                                 ),
-                              )
+                              ),
                             ],
                           ),
-                          Stack(
-                            alignment: Alignment.centerLeft,
-                            children: [
-                              // Image.asset(
-                              //   "assets/images/bloodmdcare.png",
-                              //   // height: 40,
-                              //   width: 130,
-                              //   // fit: BoxFit.cover,
-                              // ),
-                              // Image.asset(
-                              //   "assets/images/bloodgroup.png",
-                              //   height: 55,
-                              //   width: 105,
-                              //   // fit: BoxFit.cover,
-                              // ),
-                            ],
+
+                          /////// SimpleCircularProgressBar ///////
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 10),
+                            child: SimpleCircularProgressBar(
+                              progressColors: [
+                                Colors.amber,
+                              ],
+                              backColor: Colors.black26,
+                              backStrokeWidth: 10,
+                              progressStrokeWidth: 10,
+                              size: 60,
+                              valueNotifier: valueNotifier,
+                              mergeMode: true,
+                              onGetText: (double value) {
+                                return Text(
+                                  '${value.toInt()}%',
+                                  style: const TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                  ),
+                                );
+                              },
+                            ),
                           ),
                         ],
                       ),
                     ),
                   ),
                 ),
+                SizedBox(
+                  height: media.height * 0.008,
+                ),
+                // InkWell(
+                //   child: Padding(
+                //     padding: const EdgeInsets.symmetric(horizontal: 20),
+                //     child: Container(
+                //       height: 105,
+                //       width: double.maxFinite,
+                //       decoration: BoxDecoration(
+                //         borderRadius: BorderRadius.circular(15),
+                //         color: const Color.fromARGB(255, 255, 108, 82),
+                //       ),
+                //       child: Row(
+                //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //         children: [
+                //           Column(
+                //             crossAxisAlignment: CrossAxisAlignment.start,
+                //             children: [
+                //               Row(
+                //                 children: [
+                //                   Padding(
+                //                     padding: EdgeInsets.only(
+                //                         left: media.width * 0.04, top: 15),
+                //                     child: const Column(
+                //                       crossAxisAlignment:
+                //                           CrossAxisAlignment.start,
+                //                       children: [
+                //                         Text(
+                //                           "Blood test",
+                //                           style: TextStyle(
+                //                             color: Colors.white,
+                //                             fontSize: 20,
+                //                             fontWeight: FontWeight.bold,
+                //                             fontFamily: "Poppins",
+                //                           ),
+                //                         ),
+                //                         Text(
+                //                           "your next checkup",
+                //                           style: TextStyle(
+                //                               color: Colors.white70,
+                //                               fontSize: 14,
+                //                               // letterSpacing: 0.8,
+                //                               fontFamily: "Poppins",
+                //                               height: 0.5),
+                //                           // textAlign: TextAlign.center,
+                //                         ),
+                //                       ],
+                //                     ),
+                //                   ),
+                //                 ],
+                //               ),
+                //               Padding(
+                //                 padding: const EdgeInsets.symmetric(
+                //                     vertical: 12, horizontal: 20),
+                //                 child: Row(
+                //                   children: [
+                //                     const Icon(
+                //                       Icons.calendar_today_outlined,
+                //                       color: Colors.white,
+                //                       size: 17,
+                //                     ),
+                //                     SizedBox(
+                //                       width: media.width * 0.01,
+                //                     ),
+                //                     const Text(
+                //                       "30 Mar",
+                //                       style: TextStyle(
+                //                         color: Colors.white,
+                //                         fontSize: 16,
+                //                         // letterSpacing: 0.8,
+                //                         fontFamily: "Poppins",
+                //                       ),
+                //                       // textAlign: TextAlign.center,
+                //                     ),
+                //                   ],
+                //                 ),
+                //               )
+                //             ],
+                //           ),
+                //           const Stack(
+                //             alignment: Alignment.centerLeft,
+                //             children: [
+                //               // Image.asset(
+                //               //   "assets/images/bloodmdcare.png",
+                //               //   // height: 40,
+                //               //   width: 130,
+                //               //   // fit: BoxFit.cover,
+                //               // ),
+                //               // Image.asset(
+                //               //   "assets/images/bloodgroup.png",
+                //               //   height: 55,
+                //               //   width: 105,
+                //               //   // fit: BoxFit.cover,
+                //               // ),
+                //             ],
+                //           ),
+                //         ],
+                //       ),
+                //     ),
+                //   ),
+                // ),
                 SizedBox(
                   height: media.height * 0.02,
                 ),
@@ -458,7 +406,7 @@ class _HomeMainState extends State<HomeMain> {
                   child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: 25),
                     child: Text(
-                      "Categories",
+                      "Progress",
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 20,
@@ -469,7 +417,7 @@ class _HomeMainState extends State<HomeMain> {
                     ),
                   ),
                 ),
-
+                LineChartSample2(),
                 // const SizedBox(
                 //     // width: double.maxFinite,
                 //     height: 200,

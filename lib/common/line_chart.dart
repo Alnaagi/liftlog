@@ -47,7 +47,7 @@ class _LineChartSample2State extends State<LineChartSample2> {
               'avg',
               style: TextStyle(
                 fontSize: 12,
-                color: showAvg ? Colors.white.withOpacity(0.5) : Colors.white,
+                color: showAvg ? Colors.white.withOpacity(0.5) : Colors.black,
               ),
             ),
           ),
@@ -63,14 +63,23 @@ class _LineChartSample2State extends State<LineChartSample2> {
     );
     Widget text;
     switch (value.toInt()) {
-      case 2:
-        text = const Text('MAR', style: style);
+      case 1:
+        text = const Text('Wk 1', style: style);
+        break;
+      case 3:
+        text = const Text('Wk 2', style: style);
         break;
       case 5:
-        text = const Text('JUN', style: style);
+        text = const Text('Wk 3', style: style);
         break;
-      case 8:
-        text = const Text('SEP', style: style);
+      case 7:
+        text = const Text('Wk 4', style: style);
+        break;
+      case 9:
+        text = const Text('Wk 5', style: style);
+        break;
+      case 11:
+        text = const Text('DL', style: style);
         break;
       default:
         text = const Text('', style: style);
@@ -91,13 +100,13 @@ class _LineChartSample2State extends State<LineChartSample2> {
     String text;
     switch (value.toInt()) {
       case 1:
-        text = '10K';
+        text = '10 sets';
         break;
       case 3:
-        text = '30k';
+        text = '15 sets';
         break;
       case 5:
-        text = '50k';
+        text = '20 sets';
         break;
       default:
         return Container();
@@ -147,7 +156,7 @@ class _LineChartSample2State extends State<LineChartSample2> {
             showTitles: true,
             interval: 1,
             getTitlesWidget: leftTitleWidgets,
-            reservedSize: 42,
+            reservedSize: 60,
           ),
         ),
       ),
@@ -162,13 +171,8 @@ class _LineChartSample2State extends State<LineChartSample2> {
       lineBarsData: [
         LineChartBarData(
           spots: const [
-            FlSpot(0, 3),
-            FlSpot(2.6, 2),
-            FlSpot(4.9, 5),
-            FlSpot(6.8, 3.1),
-            FlSpot(8, 4),
-            FlSpot(9.5, 3),
-            FlSpot(11, 4),
+            FlSpot(0, 1),
+            FlSpot(2, 1),
           ],
           isCurved: true,
           gradient: LinearGradient(
