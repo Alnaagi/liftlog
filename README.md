@@ -128,7 +128,7 @@ Mohamed Alnaagi
 - Website: [Alnaagi.ly](https://portfolio-flutter-webapp.web.app/)
 - LinkedIn: [Alnaagi](https://www.linkedin.com/in/alnaagi/)
 
-Project Link: [https://github.com/Alnaagi/prayer](https://github.com/Alnaagi/prayer)
+Project Link: [https://github.com/Alnaagi/liftlog](https://github.com/Alnaagi/liftlog)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
